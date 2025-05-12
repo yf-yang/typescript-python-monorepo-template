@@ -122,9 +122,8 @@ declare const ERROR: (
  * implementation is in `@whatever/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
- * @param messages The messages to log.
  */
-declare const TIME: (logger: Logger, ...messages: unknown[]) => void;
+declare const TIME: (logger: Logger, label: string) => void;
 
 /**
  * Call `console.timeLog` with the logger namespace as label. Color and format
@@ -146,9 +145,8 @@ declare const TIME_LOG: (logger: Logger, ...messages: unknown[]) => void;
  * implementation is in `@whatever/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
- * @param messages The messages to log.
  */
-declare const TIME_END: (logger: Logger, ...messages: unknown[]) => void;
+declare const TIME_END: (logger: Logger) => void;
 
 // #endregion Logging
 

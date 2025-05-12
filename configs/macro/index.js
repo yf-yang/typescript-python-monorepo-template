@@ -164,11 +164,10 @@ function error(logger, format, ...messages) {
  * TIME macro implementation.
  *
  * @param {{ namespace: string } | undefined} logger
- * @param {...unknown[]} messages
  * @returns {void}
  */
-function time(logger, ...messages) {
-  logger !== undefined && console.time(logger.namespace, ...messages);
+function time(logger) {
+  logger !== undefined && console.time(logger.namespace);
 }
 
 /**
