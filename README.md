@@ -21,6 +21,11 @@ cursor whatever.code-workspace
 > If updating OhMyZsh hangs (because of the network), you can press `Ctrl+C` to cancel the installation and manually run `omz update` in the container at any time.
 6. Now you can start developing in a containerized environment.
 
+## Install extensions
+Ideally, extensions should be installed when building devcontainer, but [cursor fails to do so](https://forum.cursor.com/t/extensions-in-devcontainer-not-installing-properly/20436/15). So we need to install them manually.
+
+Check the extension list in [whatever.code-workspace](./whatever.code-workspace).
+
 ## Install dependencies
 ```
 npm i -g concurrently
@@ -42,4 +47,66 @@ Ideally, the python should be the one in the virtual environment installed by uv
 ## Development
 ```
 pnpm dev
+```
+
+## Style guidelines
+- No Chinese characters in code.
+- All words should pass spell checker (code spell checker plugin), try not to use abbreviations, pinyin is not allowed.
+- We've defined several macros for frontend code, check [macros](./configs/macro) for more details. They are replaced by `rsbuild` in development and are removed in production.
+``` ts
+// equivalent to process.env.NODE_ENV === 'development'
+if (IS_DEV) {
+  ...
+}
+// equivalent to process.env.NODE_ENV === 'production'
+else if (IS_PROD) {
+  ...
+}
+
+// logging
+const logger = MAKE_LOGGER('namespace');
+DEBUG(logger, 'debug message');
+INFO(logger, 'formatted: %s, %d, %o', "string", 123, {"object": [ True ]});
+WARN(logger, 'warning message');
+ERROR(logger, 'error message');
+TIME(logger);
+TIME_LOG(logger, message1, message2);
+TIME_END(logger);
+
+// assertions
+ASSERT(condition, message);
+FAIL(message);
+NOT_IMPLEMENTED();
+// Used for exhaustive cases in switch/if statements
+UNREACHABLE(value, message);
+
+// add a debugger statement
+DEBUGGER();
+```
+
+
+## Use zsh wisely
+We prepare several oh-my-zsh plugins, such as
+- git aliases
+```
+gst # git status
+gl # git pull
+gp # git push
+gfo # git fetch origin
+grbom # git rebase origin/main
+gco # git checkout
+gb # git branch
+
+# Conventional commit messages
+git feat "message" # git commit -m "feat: message"
+git fix "message" # git commit -m "fix: message"
+git chore "message" # git commit -m "chore: message"
+git test "message" # git commit -m "test: message"
+git docs "message" # git commit -m "docs: message"
+...
+```
+
+- z
+```
+z parts_of_folder_path # jump to the directory you want
 ```
