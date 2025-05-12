@@ -11,7 +11,6 @@
     "dev:frontend": "pnpm --filter frontend dev",
     "dev": "concurrently \"pnpm run dev:backend\" \"pnpm run dev:frontend\""
   },
-  "dependencies": {},
   "devDependencies": {
     "@jest/expect": "^29.7.0",
     "@jest/globals": "^29.7.0",
@@ -30,5 +29,5 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.0"
   },
-  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
+  "packageManager": "pnpm@10.10.0"
 }
