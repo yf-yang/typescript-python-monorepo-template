@@ -44,6 +44,13 @@ which python # ${workspaceFolder}/.venv/bin/python
 ```
 Ideally, the python should be the one in the virtual environment installed by uv, if not, you need to check if the initial `uv sync` (triggered by `pnpm initialize`) is successful.
 
+## Prepare `.env` file
+Create a `.env` file in the root directory and put secret variables in it.
+```
+ANTHROPIC_API_KEY=your_api_key
+OPENAI_API_KEY=your_api_key
+```
+
 ## Development
 ```
 pnpm dev
