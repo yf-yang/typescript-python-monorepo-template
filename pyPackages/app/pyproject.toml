@@ -1,0 +1,20 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = "LLM backend app"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.115.12",
+    "requests>=2.32.3",
+]
+
+[build-system]
+requires = ["uv_build>=0.7.3,<0.8.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = "."
+
+[project.scripts]
+demo_app = "app.cli:main"
