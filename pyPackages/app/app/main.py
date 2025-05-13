@@ -1,6 +1,6 @@
 import json
 from collections.abc import AsyncGenerator
-from typing import TypedDict
+from typing import Any, TypedDict
 
 import dotenv
 from fastapi import FastAPI, Request
@@ -21,7 +21,7 @@ app.add_middleware(
 
 
 @app.post("/echo")
-async def echo(request: Request) -> dict:
+async def echo(request: dict[Any, Any]) -> dict:
   return {
     "request.json()": await request.json(),
   }

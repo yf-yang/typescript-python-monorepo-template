@@ -1,6 +1,8 @@
+import createClient from 'openapi-fetch';
 import type { ReactNode } from 'react';
 import { MdOutlinePlayArrow } from 'react-icons/md';
 
+import type { paths } from '@/apis/schema';
 import { Button } from '@/components/shadcn-ui/button';
 
 import type { Route } from './+types/home';
@@ -12,6 +14,8 @@ export function meta(_: Route.MetaArgs): Route.MetaDescriptors {
   ];
 }
 
+const client = createClient<paths>({ baseUrl: 'http://localhost:10086' });
+
 const logger = MAKE_LOGGER('example');
 
 export default function Home(): ReactNode {
@@ -22,13 +26,11 @@ export default function Home(): ReactNode {
           variant="outline"
           onClick={async () => {
             INFO(logger, 'hello world');
-            const response = await fetch('http://localhost:10086/echo', {
-              method: 'POST',
-              body: JSON.stringify({
+            const { data } = await client.POST('/echo', {
+              body: {
                 message: 'hello',
-              }),
+              },
             });
-            const data = (await response.json()) as object;
             INFO(logger, 'response: %o', data);
           }}
           className="mt-4"
