@@ -38,7 +38,10 @@
   "containerEnv": {
     "DISPLAY": "dummy",
     "PYTHONUNBUFFERED": "True",
-    "UV_LINK_MODE": "copy"
+    "UV_LINK_MODE": "copy",
+    // vscode does not support referring to the multi-root workspace folder's root
+    // so we need to set the workspace root manually
+    "WORKSPACE_ROOT": "/workspaces/${localWorkspaceFolderBasename}"
   },
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
