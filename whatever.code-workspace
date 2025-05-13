@@ -48,6 +48,7 @@
       "ms-toolsai.jupyter",
       "ms-python.python",
       "charliermarsh.ruff",
+      "mongodb.mongodb-vscode",
       "alefragnani.Bookmarks",
       "psioniq.psi-header"
     ]

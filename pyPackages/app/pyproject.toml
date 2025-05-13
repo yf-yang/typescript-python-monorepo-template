@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.115.12",
+    "pymongo>=4.12.1",
     "requests>=2.32.3",
 ]
 
@@ -18,3 +19,4 @@ module-root = "."
 
 [project.scripts]
 demo_app = "app.cli:main"
+demo_mongo = "app.mongo:main"

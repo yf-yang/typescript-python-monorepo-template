@@ -1,7 +1,10 @@
 {
   "words": [
+    "bson",
     "dotenv",
     "fastapi",
+    "mongosh",
+    "pyproject",
     "rsbuild"
   ],
   "ignorePaths": [

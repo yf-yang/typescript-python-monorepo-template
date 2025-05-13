@@ -3,7 +3,9 @@
 {
   "name": "Ubuntu",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "whatever:latest",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [3000],
   // Use 'postCreateCommand' to run commands after the container is created.
@@ -24,7 +26,8 @@
         "usernamehw.errorlen",
         "ms-toolsai.jupyter",
         "ms-python.python",
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "mongodb.mongodb-vscode"
       ]
     },
     "settings": {
@@ -40,7 +43,7 @@
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
   ],
-  "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}; pnpm config set store-dir ~/.pnpm-store; pnpm completion zsh > ~/completion-for-pnpm.zsh; echo 'source ~/completion-for-pnpm.zsh' >> ~/.zshrc",
+  "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder};",
   "postStartCommand": "ZSH=~/.oh-my-zsh ~/.oh-my-zsh/tools/upgrade.sh"
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"

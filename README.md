@@ -56,6 +56,16 @@ OPENAI_API_KEY=your_api_key
 pnpm dev
 ```
 
+## Demo Scripts
+In [app/app/pyproject.toml](./app/pyproject.toml), we define two demo scripts:
+- `demo_app` (which executes the `main` function in [app/app/cli.py](./app/app/cli.py))
+- `demo_mongo` (which executes the `main` function in [app/app/mongo.py](./app/app/mongo.py))
+
+They are available as commands after `uv sync`.
+
+## Development with MongoDB
+Either vscode mongodb extension or `mongosh` command line tool can be used to connect to the MongoDB instance.
+
 ## Style guidelines
 - No Chinese characters in code.
 - All words should pass spell checker (code spell checker plugin), try not to use abbreviations, pinyin is not allowed.
