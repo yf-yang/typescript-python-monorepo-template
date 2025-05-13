@@ -63,6 +63,12 @@ In [app/app/pyproject.toml](./app/pyproject.toml), we define two demo scripts:
 
 They are available as commands after `uv sync`.
 
+## Generate Backend API Types
+```
+# In frontend subfolder
+pnpm gen-schema
+```
+
 ## Development with MongoDB
 Either vscode mongodb extension or `mongosh` command line tool can be used to connect to the MongoDB instance.
 

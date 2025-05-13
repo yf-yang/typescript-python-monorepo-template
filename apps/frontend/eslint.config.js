@@ -4,8 +4,12 @@ import { config as tseslintConfig } from 'typescript-eslint';
 export default tseslintConfig(
   ...repoEslintConfig,
   {
-    // Keep shadcn codes untouched
-    ignores: ['src/components/shadcn-ui/**'],
+    ignores: [
+      // Keep shadcn codes untouched
+      'src/components/shadcn-ui/**',
+      // Generated schema file should be ignored
+      'src/apis/**',
+    ],
   },
   {
     files: ['app/**', 'src/**'],
