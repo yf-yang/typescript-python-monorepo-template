@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "initialize": "concurrently \"pnpm install\" \"pnpm sync\"",
-    "sync": "uv sync",
+    "sync": "uv sync --all-packages",
     "test": "uv run pytest",
     "dev:backend": "fastapi dev ./pyPackages/app/app/main.py --port 10086",
     "dev:frontend": "pnpm --filter frontend dev",
