@@ -7,7 +7,7 @@
     "initialize": "concurrently \"pnpm install\" \"pnpm sync\"",
     "sync": "uv sync --all-packages",
     "test": "uv run pytest",
-    "dev:backend": "fastapi dev ./pyPackages/app/app/main.py --port 10086",
+    "dev:backend": "fastapi_dev ./pyPackages/app/app/main.py --port 10086",
     "dev:frontend": "pnpm --filter frontend dev",
     "dev": "concurrently \"pnpm run dev:backend\" \"pnpm run dev:frontend\""
   },
