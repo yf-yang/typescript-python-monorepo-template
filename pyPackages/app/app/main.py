@@ -20,8 +20,15 @@ app.add_middleware(
 )
 
 
-@app.post("/echo")
-async def echo(request: dict[Any, Any]) -> dict:
+@app.post("/echo_payload")
+async def echo(payload: dict[Any, Any]) -> dict:
+  return {
+    "payload": payload,
+  }
+
+
+@app.post("/echo_request")
+async def echo_request(request: Request) -> dict:
   return {
     "request.json()": await request.json(),
   }
@@ -36,3 +43,7 @@ async def sample(sample: Sample) -> dict:
   return {
     "sample": sample,
   }
+
+@app.get("/test")
+async def test() -> dict:
+  return "connected"

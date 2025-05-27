@@ -1,32 +1,54 @@
 #!/usr/bin/env python3
 
-import argparse
 import json
 import sys
+from typing import Annotated
 
 import requests
+import typer
 
 
-def main() -> None:
-  parser = argparse.ArgumentParser(description="CLI tool to interact with the API")
-  parser.add_argument("--url", default="http://localhost:8000", help="Base URL of the API")
-  parser.add_argument("--endpoint", default="/echo", help="API endpoint to call")
-  parser.add_argument("--data", default="{}", help="JSON data to send to the endpoint")
+def main(
+  url: Annotated[str, typer.Option(help="Base URL of the API")] = "http://localhost:10086",
+  data: Annotated[
+    str, typer.Option(help="JSON data to send to the endpoint")
+  ] = '{ "hello": "world" }',
+) -> None:
+  """CLI tool to interact with the API."""
 
-  args = parser.parse_args()
-
+  print(f"Call {url}/echo_payload")
   try:
-    data = json.loads(args.data)
-    response = requests.post(f"{args.url}{args.endpoint}", json=data)
-    print(f"Status code: {response.status_code}")
-    print(json.dumps(response.json(), indent=2))
+    parsed_data = json.loads(data)
+    response = requests.post(f"{url}/echo_payload", json=parsed_data)
+    typer.echo(f"Status code: {response.status_code}")
+    typer.echo(json.dumps(response.json(), indent=2))
   except requests.RequestException as e:
-    print(f"Error making request: {e}", file=sys.stderr)
+    typer.echo(f"Error making request: {e}", err=True)
+    raise typer.Exit(1)
   except json.JSONDecodeError:
-    print(f"Error: Invalid JSON data: {args.data}", file=sys.stderr)
+    typer.echo(f"Error: Invalid JSON data: {data}", err=True)
+    raise typer.Exit(1)
   except Exception as e:
-    print(f"Unexpected error: {e}", file=sys.stderr)
+    typer.echo(f"Unexpected error: {e}", err=True)
+    raise typer.Exit(1)
+
+  print()
+  print(f"Call {url}/echo_request")
+  try:
+    parsed_data = json.loads(data)
+    response = requests.post(f"{url}/echo_request", json=parsed_data)
+    typer.echo(f"Status code: {response.status_code}")
+    typer.echo(json.dumps(response.json(), indent=2))
+  except requests.RequestException as e:
+    typer.echo(f"Error making request: {e}", err=True)
+    raise typer.Exit(1)
+  except json.JSONDecodeError:
+    typer.echo(f"Error: Invalid JSON data: {data}", err=True)
+    raise typer.Exit(1)
+  except Exception as e:
+    typer.echo(f"Unexpected error: {e}", err=True)
+    raise typer.Exit(1)
 
 
 if __name__ == "__main__":
-  main()
+  typer.run(main)
