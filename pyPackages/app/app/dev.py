@@ -116,6 +116,9 @@ def _run(
   host: str = "127.0.0.1",
   port: int = 8000,
   reload: bool = True,
+  reload_dirs: list[str] | None = None,
+  reload_includes: list[str] | None = None,
+  reload_excludes: list[str] | None = None,
   workers: int | None = None,
   root_path: str = "",
   command: str,
@@ -199,6 +202,9 @@ def _run(
       host=host,
       port=port,
       reload=reload,
+      reload_dirs=reload_dirs,
+      reload_includes=reload_includes,
+      reload_excludes=reload_excludes,
       workers=workers,
       root_path=root_path,
       proxy_headers=proxy_headers,
@@ -233,6 +239,27 @@ def dev(
       help="Enable auto-reload of the server when (code) files change. This is [bold]resource intensive[/bold], use it only during development."
     ),
   ] = True,
+  reload_dir: Annotated[
+    list[str],
+    typer.Option(
+      help="Set reload directories explicitly, instead of using the current working directory.",
+      default_factory=list,
+    ),
+  ],
+  reload_include: Annotated[
+    list[str],
+    typer.Option(
+      help="Set glob patterns to include while watching for files. Includes '*.py' by default, which can be overridden in reload-excludes.",
+      default_factory=list,
+    ),
+  ],
+  reload_exclude: Annotated[
+    list[str],
+    typer.Option(
+      help="Set glob patterns to exclude while watching for files. Includes '.*, .py[cod], .sw.*, ~*' by default, which can be overridden in reload-excludes.",
+      default_factory=list,
+    ),
+  ],
   root_path: Annotated[
     str,
     typer.Option(
@@ -282,6 +309,9 @@ def dev(
     host=host,
     port=port,
     reload=reload,
+    reload_dirs=reload_dir,
+    reload_includes=reload_include,
+    reload_excludes=reload_exclude,
     root_path=root_path,
     app=app,
     command="dev",
