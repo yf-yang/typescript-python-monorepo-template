@@ -25,7 +25,7 @@ dev-dependencies = [
     "pytest",
     "ruff",
     "pyright",
-    # These are added as dev dependencies becuase they should be available
+    # These are added as dev dependencies because they should be available
     #  when developing the project.
     "app",
 ]
