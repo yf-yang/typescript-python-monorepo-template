@@ -32,5 +32,10 @@
     "ghcr.io/devcontainers-extra/features/pnpm:2": {},
     "ghcr.io/joshuanianji/devcontainer-features/mount-pnpm-store:1": {}
     // "./features/customFeature": {}
-  }
+  },
+  "overrideFeatureInstallOrder": [
+    "ghcr.io/devcontainers-extra/features/pnpm:2", 
+    "ghcr.io/joshuanianji/devcontainer-features/mount-pnpm-store"
+  ],
+  "remoteUser": "root"
 }

@@ -44,7 +44,7 @@
     "WORKSPACE_ROOT": "/workspaces/${localWorkspaceFolderBasename}"
   },
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/root/.ssh,type=bind"
   ],
   "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder};",
   "postStartCommand": "ZSH=~/.oh-my-zsh ~/.oh-my-zsh/tools/upgrade.sh"
