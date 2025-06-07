@@ -75,6 +75,7 @@
       "*.ipynb": "jupyter-notebook"
     },
     "python.defaultInterpreterPath": "${env:WORKSPACE_ROOT}/.venv/bin/python",
+    "python.analysis.typeCheckingMode": "standard",
     "[markdown]": {
       "editor.wordWrap": "bounded",
       "editor.wordWrapColumn": 100
