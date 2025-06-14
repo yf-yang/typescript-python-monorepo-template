@@ -11,7 +11,7 @@ import pluginReactHooks from './plugins/react-hooks.js';
 import pluginReact from './plugins/react.js';
 import pluginStorybook from './plugins/storybook.js';
 import pluginStylistic from './plugins/stylistic.js';
-// import pluginTailwind from './plugins/tailwind.js';
+import pluginTailwind from './plugins/tailwind.js';
 import pluginTypescriptEslint from './plugins/typescript-eslint.js';
 import pluginUnicorn from './plugins/unicorn.js';
 
@@ -37,7 +37,7 @@ export default tseslintConfig(
   ...pluginImport,
   ...pluginComments,
   ...pluginCommentLength,
-  // ...pluginTailwind,
+  ...pluginTailwind,
   ...pluginReactHooks,
   ...pluginReact,
   ...pluginReactCompiler,

@@ -1,25 +1,14 @@
-import tailwind from 'eslint-plugin-tailwindcss';
+import betterTailwind from 'eslint-plugin-better-tailwindcss';
 import { config as tseslintConfig } from 'typescript-eslint';
 
-export default tseslintConfig(
-  ...tailwind.configs['flat/recommended'],
-  {
-    name: 'whatever/tailwindcss/common',
-    rules: {
-      // follow prettier-plugin-tailwindcss
-      'tailwindcss/classnames-order': 'off',
-    },
+export default tseslintConfig({
+  name: 'notebook-agent/tailwindcss/common',
+  plugins: {
+    'better-tailwindcss': betterTailwind,
   },
-  {
-    name: 'whatever/tailwindcss/settings',
-    settings: {
-      tailwindcss: {
-        callees: ['classnames', 'clsx', 'ctl', 'cn'],
-        whitelist: [
-          'page-root', // Used to query page width
-          '^debug-.*',
-        ],
-      },
-    },
-  }
-);
+  rules: {
+    ...betterTailwind.configs['recommended'].rules,
+    // follow prettier-plugin-tailwindcss
+    'better-tailwindcss/sort-classes': 'off',
+  },
+});

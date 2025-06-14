@@ -4,6 +4,13 @@ import { config as tseslintConfig } from 'typescript-eslint';
 export default tseslintConfig(
   ...repoEslintConfig,
   {
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: 'app/app.css',
+      },
+    },
+  },
+  {
     ignores: [
       // Keep shadcn codes untouched
       'src/components/shadcn-ui/**',
