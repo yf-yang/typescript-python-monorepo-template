@@ -15,7 +15,7 @@
     "start": "react-router-serve ./build/server/static/js/app.js",
     "typegen": "react-router typegen",
     "typecheck": "pnpm typegen && tsc",
-    "gen-schema": "gen_schema && pnpm openapi-typescript ../../pyPackages/app/openapi.json -o ./src/apis/schema.d.ts"
+    "gen-schema": "gen_schema && pnpm openapi-typescript ../../pyPackages/app/openapi.json -o ./src/apis/schema.d.ts && pnpm json2ts ../../pyPackages/app/schema.json -o ./src/apis/app_schema.d.ts --additionalProperties false"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.2",
@@ -40,7 +40,6 @@
     "@types/react": "^19.1.3",
     "@types/react-dom": "^19.1.3",
     "@whatever/macros": "workspace:^",
-    "openapi-typescript": "^7.8.0",
     "rsbuild-plugin-react-router": "^0.0.4",
     "shadcn": "2.6.0-canary.2",
     "tailwindcss": "^4.1.6",

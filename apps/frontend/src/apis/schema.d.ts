@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/echo": {
+    "/echo_payload": {
         parameters: {
             query?: never;
             header?: never;
@@ -14,7 +14,24 @@ export interface paths {
         get?: never;
         put?: never;
         /** Echo */
-        post: operations["echo_echo_post"];
+        post: operations["echo_echo_payload_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/echo_request": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Echo Request */
+        post: operations["echo_request_echo_request_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -32,6 +49,23 @@ export interface paths {
         put?: never;
         /** Sample */
         post: operations["sample_sample_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/test": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Test */
+        get: operations["test_test_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -72,7 +106,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    echo_echo_post: {
+    echo_echo_payload_post: {
         parameters: {
             query?: never;
             header?: never;
@@ -109,6 +143,28 @@ export interface operations {
             };
         };
     };
+    echo_request_echo_request_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+        };
+    };
     sample_sample_post: {
         parameters: {
             query?: never;
@@ -140,6 +196,28 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    test_test_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
                 };
             };
         };

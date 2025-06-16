@@ -5,17 +5,17 @@
     "version": "0.1.0"
   },
   "paths": {
-    "/echo": {
+    "/echo_payload": {
       "post": {
         "summary": "Echo",
-        "operationId": "echo_echo_post",
+        "operationId": "echo_echo_payload_post",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "additionalProperties": true,
                 "type": "object",
-                "title": "Request"
+                "title": "Payload"
               }
             }
           },
@@ -29,7 +29,7 @@
                 "schema": {
                   "additionalProperties": true,
                   "type": "object",
-                  "title": "Response Echo Echo Post"
+                  "title": "Response Echo Echo Payload Post"
                 }
               }
             }
@@ -40,6 +40,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/echo_request": {
+      "post": {
+        "summary": "Echo Request",
+        "operationId": "echo_request_echo_request_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Echo Request Echo Request Post"
                 }
               }
             }
@@ -80,6 +100,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test": {
+      "get": {
+        "summary": "Test",
+        "operationId": "test_test_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Test Test Get"
                 }
               }
             }

@@ -19,7 +19,7 @@ build-backend = "uv_build"
 module-root = "."
 
 [project.scripts]
-gen_schema = "app.get_openapi:main"
+gen_schema = "app.gen_schema:main"
 demo_app = "app.cli:main"
 demo_mongo = "app.mongo:main"
 fastapi_dev = "app.dev:main"
