@@ -5,7 +5,7 @@ export default {
   singleQuote: true,
   trailingComma: 'es5',
   arrowParens: 'avoid',
-  printWidth: 80,
+  printWidth: 100,
   jsdocCommentLineStrategy: 'multiline',
   quoteProps: 'consistent',
 };

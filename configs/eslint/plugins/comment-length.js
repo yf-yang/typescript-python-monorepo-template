@@ -9,7 +9,7 @@ export default tseslintConfig(configs['flat/recommended'], {
       {
         // when codes are commented out and 3 characters are added, we don't
         // want the plugin to complain
-        maxLength: 83,
+        maxLength: 103,
         ignoreUrls: true,
         ignoreCommentsWithCode: true,
         mode: 'compact-on-overflow',

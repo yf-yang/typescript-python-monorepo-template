@@ -16,7 +16,7 @@ export default tseslintConfig({
     //
     // TL;DR: prettier's print width is NOT AN UPPER LIMIT!
     // Therefore, we increase eslint max-len limit to 120, but prettier's
-    // print width is kept at 80. It helps improve readability while in rare
+    // print width is kept at 100. It helps improve readability while in rare
     // cases it still passes eslint check.
     '@stylistic/js/max-len': [
       'error',
