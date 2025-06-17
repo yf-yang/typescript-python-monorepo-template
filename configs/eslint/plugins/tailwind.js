@@ -10,5 +10,12 @@ export default tseslintConfig({
     ...betterTailwind.configs['recommended'].rules,
     // follow prettier-plugin-tailwindcss
     'better-tailwindcss/sort-classes': 'off',
+    'better-tailwindcss/multiline': [
+      'warn',
+      {
+        printWidth: 100,
+        preferSingleLine: true,
+      },
+    ],
   },
 });
