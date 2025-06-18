@@ -1,12 +1,19 @@
 import json
 from pathlib import Path
-from typing import Any
 
+from inflection import camelize, underscore
 from pydantic import BaseModel
 
 from app.main import app
 
-pydantic_models: list[type[BaseModel]] = []
+
+class _Schema(BaseModel):
+  """
+  This is a dummy class to export classes to the frontend.
+  Keys do not matter.
+  """
+
+  pass
 
 
 def main() -> None:
@@ -20,33 +27,17 @@ def main() -> None:
 
   print(f"OpenAPI schema saved to {openapi_path.absolute()}")
 
-  defs = dict[str, Any]()
-  pseudo_properties = dict[str, Any]()
-
-  for i, model in enumerate(pydantic_models):
-    schema = model.model_json_schema()
-    name = model.__name__
-    defs[name] = schema
-    pseudo_properties[f"_{i}"] = {
-      "$ref": f"#/$defs/{name}",
-    }
-
-    # Dependencies of this model
-    if "$defs" in schema:
-      for dep_name, dep_schema in schema["$defs"].items():
-        defs[dep_name] = dep_schema
-
-  combined_schema = {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "_Schema",
-    "properties": pseudo_properties,
-    "$defs": defs,
-  }
+  json_schema = _Schema.model_json_schema()
+  # Deal with enums
+  for schema in json_schema.get("$defs", {}).values():
+    if "enum" not in schema:
+      continue
+    enum_values = schema["enum"]
+    schema["tsEnumNames"] = [camelize(underscore(value)) for value in enum_values]
 
   schema_path = output_dir / "schema.json"
 
   with open(schema_path, "w") as f:
-    json.dump(combined_schema, f, indent=2)
+    json.dump(json_schema, f, indent=2)
 
-  print(f"{len(pydantic_models)} json schema saved to {schema_path.absolute()}")
+  print(f"{len(json_schema['properties'])} json schema saved to {schema_path.absolute()}")

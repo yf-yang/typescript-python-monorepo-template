@@ -28,6 +28,7 @@ dev-dependencies = [
     # These are added as dev dependencies because they should be available
     #  when developing the project.
     "app",
+    "inflection>=0.5.1",
 ]
 package = false
 

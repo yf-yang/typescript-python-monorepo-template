@@ -1,7 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "title": "_Schema",
+  "description": "This is a dummy class to export classes to the frontend.\nKeys do not matter.",
   "properties": {},
-  "$defs": {}
+  "title": "_Schema",
+  "type": "object"
 }
