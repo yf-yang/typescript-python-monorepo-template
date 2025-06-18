@@ -163,20 +163,9 @@
     "eslint.format.enable": true,
     "eslint.codeActionsOnSave.mode": "problems",
     "errorLens.delay": 3000,
-    "tailwindCSS.experimental.classRegex": [
+    "tailwindCSS.classFunctions": [
       // https://cva.style/docs/getting-started/installation#intellisense
-      [
-        "cva\\(([^)]*)\\)",
-        "[\"'`]([^\"'`]*).*?[\"'`]"
-      ],
-      [
-        "cx\\(([^)]*)\\)",
-        "(?:'|\"|`)([^']*)(?:'|\"|`)"
-      ],
-      [
-        "cn\\(([^)]*)\\)",
-        "(?:'|\"|`)([^']*)(?:'|\"|`)"
-      ],
+      "cc", "clb", "clsx", "cn", "cnb", "ctl", "cva", "cx", "dcnb", "objstr", "tv", "twJoin", "twMerge"
     ],
     "files.associations": {
       "*.css": "tailwindcss"
