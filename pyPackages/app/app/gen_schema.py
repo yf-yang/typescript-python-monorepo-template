@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -19,11 +20,28 @@ def main() -> None:
 
   print(f"OpenAPI schema saved to {openapi_path.absolute()}")
 
+  defs = dict[str, Any]()
+  pseudo_properties = dict[str, Any]()
+
+  for i, model in enumerate(pydantic_models):
+    schema = model.model_json_schema()
+    name = model.__name__
+    defs[name] = schema
+    pseudo_properties[f"_{i}"] = {
+      "$ref": f"#/$defs/{name}",
+    }
+
+    # Dependencies of this model
+    if "$defs" in schema:
+      for dep_name, dep_schema in schema["$defs"].items():
+        defs[dep_name] = dep_schema
+
   combined_schema = {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "_Schema",
-    "properties": {model.__name__: model.model_json_schema() for model in pydantic_models},
+    "properties": pseudo_properties,
+    "$defs": defs,
   }
 
   schema_path = output_dir / "schema.json"
