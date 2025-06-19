@@ -5,8 +5,12 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type DummyKey = string | number;
+
 /**
  * This is a dummy class to export classes to the frontend.
- * Keys do not matter.
+ * To export keys, declare as dummy_key's union type.
  */
-export interface _Schema {}
+export interface _Schema {
+  dummy_key: DummyKey;
+}
