@@ -7,6 +7,18 @@ const fs = require('fs');
 const path = require('path');
 const toml = require('toml');
 
+const IGNORED_DIRS = ['node_modules', 'dist', 'build', '__pycache__',];
+
+/**
+ * Check if a directory is ignored.
+ * 
+ * @param {string} directory 
+ * @returns 
+ */
+function isIgnoredDirectory(directory) {
+  return directory.startsWith('.') || IGNORED_DIRS.includes(directory);
+}
+
 /**
  * Load all the package.json
  *
@@ -24,7 +36,7 @@ function loadPackageJsonFiles(cwd) {
       if (file === 'package.json') {
         // console.log('found: %o', filePath);
         packageJsonFiles.push(filePath);
-      } else if (file !== 'node_modules' && stats.isDirectory()) {
+      } else if (!isIgnoredDirectory(file) && stats.isDirectory()) {
         searchDirectory(filePath);
       }
     }
@@ -50,7 +62,7 @@ function loadPyprojectTomlFiles(cwd) {
       if (file === 'pyproject.toml') {
         // console.log('found: %o', filePath);
         pyprojectTomlFiles.push(filePath);
-      } else if (file !== 'node_modules' && stats.isDirectory()) {
+      } else if (!isIgnoredDirectory(file) && stats.isDirectory()) {
         searchDirectory(filePath);
       }
     }
@@ -68,6 +80,8 @@ function determinePackageNamesAndMethods(cwd = process.cwd()) {
       )
     )
     .flat();
+  console.log('JavaScript Packages:', jsPackageNames.join(', '));
+
   const pyPackages = loadPyprojectTomlFiles(cwd);
   const pyPackageNames = pyPackages
     .map(pkg =>
@@ -77,6 +91,7 @@ function determinePackageNamesAndMethods(cwd = process.cwd()) {
     )
     .flat()
     .map(specification => specification.split(/[ >=<~!\[\]]/)[0]);
+  console.log('Python Packages:', pyPackageNames.join(', '));
 
   const packageNames = [...jsPackageNames, ...pyPackageNames];
 
