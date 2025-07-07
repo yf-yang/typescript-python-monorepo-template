@@ -5,6 +5,6 @@
   "type": "module",
   "main": "./base.json",
   "devDependencies": {
-    "@rslib/core": "^0.10.6"
+    "@rslib/core": "^0.11.0"
   }
 }

@@ -7,8 +7,8 @@
     ".": "./jest.config.js"
   },
   "devDependencies": {
-    "@jest/types": "^30.0.1",
-    "@rslib/core": "^0.10.6",
+    "@jest/types": "^30.0.5",
+    "@rslib/core": "^0.11.0",
     "@swc/types": "^0.1.23"
   },
   "dependencies": {

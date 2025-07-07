@@ -28,8 +28,8 @@
     "build": "rslib build"
   },
   "devDependencies": {
-    "@rslib/core": "^0.10.6",
-    "@types/node": "^24.0.15",
+    "@rslib/core": "^0.11.0",
+    "@types/node": "^24.1.0",
     "@whatever/macros": "workspace:^",
     "utility-types": "^3.11.0"
   },
