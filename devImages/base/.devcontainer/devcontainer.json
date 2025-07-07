@@ -30,12 +30,14 @@
     "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
     "ghcr.io/devcontainers-extra/features/neovim-apt-get:1": {},
     "ghcr.io/devcontainers-extra/features/pnpm:2": {},
-    "ghcr.io/joshuanianji/devcontainer-features/mount-pnpm-store:1": {}
+    "ghcr.io/joshuanianji/devcontainer-features/mount-pnpm-store:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
     // "./features/customFeature": {}
   },
   "overrideFeatureInstallOrder": [
     "ghcr.io/devcontainers-extra/features/pnpm:2", 
-    "ghcr.io/joshuanianji/devcontainer-features/mount-pnpm-store"
+    "ghcr.io/joshuanianji/devcontainer-features/mount-pnpm-store",
+    "ghcr.io/anthropics/devcontainer-features/claude-code"
   ],
   "remoteUser": "root"
 }
