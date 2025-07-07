@@ -1,5 +1,3 @@
-import json
-from collections.abc import AsyncGenerator
 from typing import Any, TypedDict
 
 import dotenv
@@ -22,6 +20,7 @@ app.add_middleware(
 
 @app.post("/echo_payload")
 async def echo(payload: dict[Any, Any]) -> dict:
+  # In this example, the payload is already a loaded JSON object
   return {
     "payload": payload,
   }
@@ -29,9 +28,11 @@ async def echo(payload: dict[Any, Any]) -> dict:
 
 @app.post("/echo_request")
 async def echo_request(request: Request) -> dict:
+  # In this example, the request is a raw HTTP request, so we need to call json() to get the payload
   return {
     "request.json()": await request.json(),
   }
+
 
 class Sample(TypedDict):
   name: str
@@ -44,6 +45,7 @@ async def sample(sample: Sample) -> dict:
     "sample": sample,
   }
 
+
 @app.get("/test")
-async def test() -> dict:
+async def test() -> str:
   return "connected"

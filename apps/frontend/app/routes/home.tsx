@@ -26,7 +26,7 @@ export default function Home(): ReactNode {
           variant="outline"
           onClick={async () => {
             INFO(logger, 'hello world');
-            const { data } = await client.POST('/echo', {
+            const { data } = await client.POST('/echo_payload', {
               body: {
                 message: 'hello',
               },
