@@ -7,12 +7,12 @@
     ".": "./jest.config.js"
   },
   "devDependencies": {
-    "@jest/types": "^29.6.3",
-    "@rslib/core": "^0.10.1",
-    "@swc/types": "^0.1.21"
+    "@jest/types": "^30.0.1",
+    "@rslib/core": "^0.10.6",
+    "@swc/types": "^0.1.23"
   },
   "dependencies": {
-    "@swc/jest": "^0.2.38",
+    "@swc/jest": "^0.2.39",
     "jest-transform-stub": "^2.0.0"
   }
 }
