@@ -15,7 +15,7 @@
     "spellcheck": "cspell '**/*.{ts,js,tsx,jsx,md,txt}'"
   },
   "devDependencies": {
-    "@rsbuild/core": "1.4.7",
+    "@rsbuild/core": "1.4.8",
     "@rslib/core": "^0.10.6"
   }
 }
