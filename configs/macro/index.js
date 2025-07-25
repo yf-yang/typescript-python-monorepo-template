@@ -221,6 +221,34 @@ function assert(condition, message) {
 }
 
 /**
+ * ASSERT_EXPRESSION macro implementation.
+ * 
+ * To enable/disable a breakpoint instead of throwing an error, set
+ * `ENABLE_DEBUG` to `true`/`false`. VSCode ctrl/cmd + D may help you modify all
+ * of them simultaneously.
+ * https://code.visualstudio.com/docs/editor/codebasics#_multiple-selections-multicursor
+ * 
+ * @template T
+ * @param {T | undefined | null} expression
+ * @param {string} [message]
+ * @returns {T}
+ */
+function assertExpression(expression, message) {
+  const ENABLE_DEBUG = true;
+  if (expression === undefined || expression === null) {
+    if (ENABLE_DEBUG) {
+      (typeof alert === 'function' ? alert : console.log)(
+        `ASSERT_EXPRESSION: The code pauses because an assertion failed. Check call stack for more details. message: ${message}`
+      );
+      debugger;
+    }
+    throw new Error(message);
+  }
+  return expression;
+}
+
+
+/**
  * FAIL macro implementation.
  *
  * To enable/disable a breakpoint instead of throwing an error, set
@@ -303,13 +331,38 @@ function unreachable(value, message) {
  * ctrl/cmd + D may help you modify all of them simultaneously.
  * https://code.visualstudio.com/docs/editor/codebasics#_multiple-selections-multicursor
  *
+ * @param {string} [message]
  * @returns {void}
  */
-function trigger_debugger() {
+function trigger_debugger(message) {
   const ENABLE_DEBUG = true;
   if (ENABLE_DEBUG) {
     (typeof alert === 'function' ? alert : console.log)(
-      'DEBUGGER: The code pauses because something went wrong. Check call stack for more details.'
+      `DEBUGGER: The code pauses because something went wrong. Check call stack for more details. message: ${message}`
+    );
+    debugger;
+  }
+}
+
+/**
+ * DEBUGGER_IF_NOT macro implementation.
+ *
+ * It does not throw an error, but it pauses the code execution, so codes below
+ * this line will not be marked as unreachable.
+ *
+ * To enable/disable a breakpoint, set `ENABLE_DEBUG` to `true`/`false`. VSCode
+ * ctrl/cmd + D may help you modify all of them simultaneously.
+ * https://code.visualstudio.com/docs/editor/codebasics#_multiple-selections-multicursor
+ *
+ * @param {unknown} condition
+ * @param {string} [message]
+ * @returns {asserts condition}
+ */
+function trigger_debugger_if_not(condition, message) {
+  const ENABLE_DEBUG = true;
+  if (ENABLE_DEBUG && !condition) {
+    (typeof alert === 'function' ? alert : console.log)(
+      `DEBUGGER_IF_NOT: The code pauses because an assertion failed. Check call stack for more details. message: ${message}`
     );
     debugger;
   }
@@ -318,6 +371,7 @@ function trigger_debugger() {
 // #endregion Assertion
 
 export const voidFunction = () => {};
+export const identityFunction = (value) => value;
 
 // #region macro strings
 
@@ -338,6 +392,7 @@ export const INFO = asString(info);
 export const WARN = asString(warn);
 export const ERROR = asString(error);
 export const ASSERT = asString(assert);
+export const ASSERT_EXPRESSION = asString(assertExpression);
 export const FAIL = asString(fail);
 export const TIME = asString(time);
 export const TIME_LOG = asString(timeLog);
@@ -345,7 +400,9 @@ export const TIME_END = asString(timeEnd);
 export const NOT_IMPLEMENTED = asString(notImplemented);
 export const UNREACHABLE = asString(unreachable);
 export const DEBUGGER = asString(trigger_debugger);
+export const DEBUGGER_IF_NOT = asString(trigger_debugger_if_not);
 export const VOID_FUNCTION = asString(voidFunction);
+export const IDENTITY_FUNCTION = asString(identityFunction);
 
 // #endregion macro strings
 
@@ -370,8 +427,10 @@ export const define = {
   TIME_LOG: enableLogging ? TIME_LOG : VOID_FUNCTION,
   TIME_END: enableLogging ? TIME_END : VOID_FUNCTION,
   ASSERT: enableAssertion ? ASSERT : VOID_FUNCTION,
+  ASSERT_EXPRESSION: enableAssertion ? ASSERT_EXPRESSION : IDENTITY_FUNCTION,
   FAIL: enableAssertion ? FAIL : VOID_FUNCTION,
   NOT_IMPLEMENTED: enableAssertion ? NOT_IMPLEMENTED : VOID_FUNCTION,
   UNREACHABLE: enableAssertion ? UNREACHABLE : VOID_FUNCTION,
   DEBUGGER: enableAssertion ? DEBUGGER : VOID_FUNCTION,
+  DEBUGGER_IF_NOT: enableAssertion ? DEBUGGER_IF_NOT : VOID_FUNCTION,
 };

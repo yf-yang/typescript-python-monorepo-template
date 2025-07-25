@@ -1,5 +1,5 @@
 /**
- * For more details, check `@whatever/macros` package's `index.js`.
+ * For more details, check `@notebook-agent/macros` package's `index.js`.
  */
 
 // #region Constants
@@ -18,7 +18,7 @@ declare type Logger = { namespace: string; color: string } | undefined;
  * `LOG`, `INFO`, `WARN`, and `ERROR` functions.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param namespace The namespace of the logger.
  */
@@ -28,7 +28,7 @@ declare const MAKE_LOGGER: (namespace?: string) => Logger | undefined;
  * Call `console.debug` with the logger namespace.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
  * @param format The format string. Check
@@ -46,7 +46,7 @@ declare const DEBUG: (
  * Call `console.log` with the logger namespace.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
  * @param format The format string. Check
@@ -64,7 +64,7 @@ declare const LOG: (
  * Call `console.info` with the logger namespace.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
  * @param format The format string. Check
@@ -82,7 +82,7 @@ declare const INFO: (
  * Call `console.warn` with the logger namespace.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
  * @param format The format string. Check
@@ -100,7 +100,7 @@ declare const WARN: (
  * Call `console.error` with the logger namespace.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
  * @param format The format string. Check
@@ -119,7 +119,7 @@ declare const ERROR: (
  * not supported in this function.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
  */
@@ -130,7 +130,7 @@ declare const TIME: (logger: Logger, label: string) => void;
  * are not supported in this function.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
  * @param messages The messages to log.
@@ -142,7 +142,7 @@ declare const TIME_LOG: (logger: Logger, ...messages: unknown[]) => void;
  * are not supported in this function.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param logger The logger created by calling `MAKE_LOGGER`.
  */
@@ -157,7 +157,7 @@ declare const TIME_END: (logger: Logger) => void;
  * an error with the message.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param condition The condition to check.
  * @param message The message to show when the condition is `false`.
@@ -168,10 +168,29 @@ declare const ASSERT: (
 ) => asserts condition;
 
 /**
+ * Asserts that the `expression` is not `undefined` or `null`. If it is, it will
+ * throw an error with the message.
+ *
+ * This is a macro function that will be removed in the production build. The
+ * implementation is in `@notebook-agent/macros` package's `index.js`
+ *
+ * @param expression The expression to check.
+ * @param message The message to show when the expression is `undefined` or
+ *   `null`.
+ *
+ * @returns The expression.
+ * @throws {Error} If the expression is `undefined` or `null`.
+ */
+declare const ASSERT_EXPRESSION: <T>(
+  expression: T | undefined | null,
+  message?: string
+) => T;
+
+/**
  * Fail the code execution with the message.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param message The message to show when the code execution fails.
  */
@@ -182,7 +201,7 @@ declare const FAIL: (message?: string) => never;
  * it will throw an error.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  */
 declare const NOT_IMPLEMENTED: () => never;
 
@@ -194,7 +213,7 @@ declare const NOT_IMPLEMENTED: () => never;
  * `switch` statements or `if` statements that should cover all the cases.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
  *
  * @param value The value that is unreachable.
  * @param message The message to show when the code execution reaches this line.
@@ -206,11 +225,26 @@ declare const UNREACHABLE: (value: never, message?: string) => never;
  * this line will not be marked as unreachable.
  *
  * This is a macro function that will be removed in the production build. The
- * implementation is in `@whatever/macros` package's `index.js`
+ * implementation is in `@notebook-agent/macros` package's `index.js`
+ *
+ * @param message The message to show when the code execution reaches this line.
  */
-declare const DEBUGGER: () => void;
+declare const DEBUGGER: (message?: string) => void;
+
 /**
- * For more details, check `@whatever/macros` package's `index.js`.
+ * It does not throw an error, but it pauses the code execution, so codes below
+ * this line will not be marked as unreachable.
+ *
+ * This is a macro function that will be removed in the production build. The
+ * implementation is in `@notebook-agent/macros` package's `index.js`
+ *
+ * @param condition The condition to check.
+ * @param message The message to show when the condition is `false`.
+ */
+declare const DEBUGGER_IF_NOT: (condition: unknown, message?: string) => void;
+
+/**
+ * For more details, check `@notebook-agent/macros` package's `index.js`.
  */
 
 // #endregion Assertion
