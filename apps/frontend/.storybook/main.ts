@@ -10,6 +10,11 @@ const config: StorybookConfig = {
     check: true,
   },
   rsbuildFinal: (config) => {
+    config = {
+      ...config,
+      // https://github.com/rspack-contrib/storybook-rsbuild/issues/304#issuecomment-3116733520
+      plugins: config.plugins?.filter(p => (p as {name?: string}).name !== 'rsbuild:react-router'),
+    }
     return mergeRsbuildConfig(config, {
       dev: { client: { overlay: false } },
     })
