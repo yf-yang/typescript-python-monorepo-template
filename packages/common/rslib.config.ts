@@ -6,10 +6,12 @@ export default defineConfig({
     entry: {
       index: './src/index.ts',
     },
+    define,
+  },
+  resolve: {
     alias: {
       '@/**': './src/**',
     },
-    define,
   },
   lib: [
     {
