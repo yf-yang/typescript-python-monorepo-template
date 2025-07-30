@@ -19,7 +19,6 @@
         "eamodio.gitlens",
         "gruntfuggly.todo-tree",
         "gxl.git-graph-3", // Git Lens graph is a paid feature, so use git graph instead
-        "ms-vscode.vscode-typescript-next",
         "bradlc.vscode-tailwindcss",
         "streetsidesoftware.code-spell-checker",
         "tamasfe.even-better-toml",

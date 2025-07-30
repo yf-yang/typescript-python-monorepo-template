@@ -54,8 +54,7 @@ Use image built from `base.json` as the base image in `devcontainer.json`, modif
         "aaron-bond.better-comments",
         "streetsidesoftware.code-spell-checker",
         "mhutchie.git-graph",
-        "ms-vscode.vscode-typescript-next",
-          "Gruntfuggly.todo-tree",
+        "Gruntfuggly.todo-tree",
         "psioniq.psi-header"
       ]
     }
