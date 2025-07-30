@@ -1,5 +1,3 @@
-/// <reference types='@whatever/macros/types' />
-
 import type { Preview } from '@storybook/react';
 
 import '../app/app.css';
