@@ -31,7 +31,8 @@
     "ghcr.io/devcontainers-extra/features/neovim-apt-get:1": {},
     "ghcr.io/devcontainers-extra/features/pnpm:2": {},
     "ghcr.io/joshuanianji/devcontainer-features/mount-pnpm-store:1": {},
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     // "./features/customFeature": {}
   },
   "overrideFeatureInstallOrder": [
